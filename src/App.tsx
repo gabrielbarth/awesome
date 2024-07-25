@@ -1,11 +1,15 @@
 import React, { ReactElement } from 'react';
-import { SafeAreaView, Text } from 'react-native';
+
+import { Home } from './pages/home';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const App = (): ReactElement => {
+  const queryClient = new QueryClient();
+
   return (
-    <SafeAreaView>
-      <Text>oi</Text>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <Home />
+    </QueryClientProvider>
   );
 };
 

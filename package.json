@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "react-query": "3.39.3",
     "react": "18.2.0",
     "react-native": "0.74.3"
   },
