@@ -31,7 +31,7 @@ const HomeWithPageHandlerPoc = () => {
   const renderUnknownState = () => {
     return (
       <View style={styles.container}>
-        <Text>oi este é um exemplo: other empty state </Text>
+        <Text>oi este é um exemplo: UNKNOWN STATE </Text>
       </View>
     );
   };
@@ -41,9 +41,9 @@ const HomeWithPageHandlerPoc = () => {
       {renderWithPageHandler({
         currentState: state,
         pageStates: {
-          [PageState.default]: renderDefault,
-          [PageState.empty]: renderOtherEmptyState,
-          ['unknownState']: renderUnknownState,
+          [PageState.default]: renderDefault(),
+          [PageState.empty]: renderOtherEmptyState(),
+          ['unknownState']: renderUnknownState(),
         },
       })}
     </>

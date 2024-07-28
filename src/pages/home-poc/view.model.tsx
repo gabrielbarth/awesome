@@ -10,7 +10,7 @@ export const useHomeViewModel = (): HomeModelProps => {
     const fetchData = async () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       setMessage('Hello from Async Operation!');
-      setState(PageState.default);
+      setState('unknownState');
     };
 
     fetchData();
