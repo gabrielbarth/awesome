@@ -3,16 +3,30 @@ import {
   View,
   StyleSheet,
   requireNativeComponent,
-  ViewComponent,
+  NativeSyntheticEvent,
+  ViewProps,
+  // Alert,
 } from 'react-native';
 
-const MyComposeCard: typeof ViewComponent =
-  requireNativeComponent('ComposeCardView');
+interface OnPressEvent {
+  message: string;
+}
+
+interface MyComposeCardProps extends ViewProps {
+  onPress?: (event: NativeSyntheticEvent<OnPressEvent>) => void;
+}
+
+const MyComposeCard =
+  requireNativeComponent<MyComposeCardProps>('ComposeCardView');
 
 export const MyNativeComponent = () => {
+  const handlePress = (event: NativeSyntheticEvent<OnPressEvent>) => {
+    // Alert.alert('Card Pressed - JS Event:', event.nativeEvent.message);
+    console.log('Card Pressed - JS Event');
+  };
   return (
     <View style={styles.container}>
-      <MyComposeCard style={styles.card} />
+      <MyComposeCard style={styles.card} onPress={handlePress} />
     </View>
   );
 };

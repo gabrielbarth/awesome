@@ -19,8 +19,24 @@ class ComposeCardViewManager : SimpleViewManager<ComposeView>() {
         return ComposeView(reactContext).apply {
             setContent {
                 CardComponent(icon = Icons.Default.Favorite, label = "Favorite") {
-                    Toast.makeText(context, "Card Pressed", Toast.LENGTH_SHORT).show()
-                    Log.d("ComposeCard", "Card Pressed")
+                    //Toast.makeText(context, "Card Pressed", Toast.LENGTH_SHORT).show()
+                    //Log.d("ComposeCard", "Card Pressed")
+
+                    //  callback to React Native here
+
+                    if(!reactContext.hasActiveCatalystInstance()) {
+                        return@CardComponent;
+                    }
+
+                    val event = Arguments.createMap().apply {
+                        putString("message", "Card Pressed Native")
+                    }
+                    //RCTEventEmitter is deprecated -> RCTModernEventEmitter ?
+                    reactContext.getJSModule(RCTModernEventEmitter::class.java).receiveEvent(
+                        id,
+                        "onPress",
+                        event
+                    )
                 }
             }
         }
